@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Enter PIN</title>
+  <link rel="stylesheet" href="registerpin.css">
+</head>
+<body>
+    <div class="container">
+  <h2>Register Your PIN</h2>
+  <form method="POST" action="/submit-pin">
+    <div id="error" class="mt-6 text-sm text-gray-600 hidden"></div>
+    <div class="form-group">
+        <input type="password" id="pin-input" name="pin" placeholder="Enter PIN" maxlength="6" required />
+    </div>
+    <div class="form-group">
+    <input type="password" id="confirm-pin-input" name="confirm-pin" placeholder="Confirm PIN" maxlength="6" required />
+    </div>
+    <button type="submit" class="validate-pin">Submit</button>
+  </form>
+  </div>
+  <script src="registerpin.js"></script>
+</body>
+</html>
