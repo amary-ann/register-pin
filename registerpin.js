@@ -13,7 +13,8 @@ document.querySelector(".validate-pin").addEventListener("click", async (e) => {
     if (pin !== confirmpin){
         errorBox.classList.remove("hidden");
         errorBox.innerHTML += `<li style="color: red;">Pins do not match!.</li>
-    `
+    `;
+        return;
     }
     let pinData = {"pin": pin, "confirm_pin":confirmpin, "phone_number":"+2348183808266"};
 
