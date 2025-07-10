@@ -3,7 +3,7 @@ document.querySelector(".validate-pin").addEventListener("click", async (e) => {
     const pin = document.getElementById("pin-input").value.trim();
     const confirmpin = document.getElementById("confirm-pin-input").value.trim();
     const errorBox = document.getElementById("error");
-    console.log("Pin entered:", pin);
+    const phoneNo = document.getElementById("phone-input").value.trim();
     if (pin.length !== 6 || isNaN(pin)) {
         errorBox.classList.remove("hidden");
         errorBox.innerHTML += `<li style="color: red;">Please enter a valid 6-digit PIN.</li>
@@ -16,7 +16,22 @@ document.querySelector(".validate-pin").addEventListener("click", async (e) => {
     `;
         return;
     }
-    let pinData = {"pin": pin, "confirm_pin":confirmpin, "phone_number":"+2348183808266"};
+    // Normalize the number
+    if (phoneNo.startsWith("0")) {
+        phone = phoneNo.slice(1);
+    } else if (phoneNo.startsWith("234")) {
+        phone = phoneNo.slice(3);
+    } else if (phoneNo.startsWith("+234")) {
+        phone = phoneNo.slice(4);
+    } else {
+        phone = phoneNo;
+    }
+
+    // Always prepend +234
+    phoneNum = "+234" + phone;
+    console.log("Normalized phone number:", phoneNum);
+    
+    let pinData = {"pin": pin, "confirm_pin":confirmpin, "phone_number":phoneNum};
 
     pin_validation = await fetch("https://mimic-sparkle.onrender.com/register-pin",
         { method: "POST",
