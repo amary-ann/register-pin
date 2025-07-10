@@ -2,6 +2,9 @@ const iframe = document.createElement('iframe');
 iframe.src = 'https://sparklemimicfrontend.netlify.app/'; // point to your static HTML
 iframe.style.display = 'none';
 document.body.appendChild(iframe);
+iframe.onload = () => {
+    iframe.contentWindow.postMessage('getPhoneNumber', 'https://sparklemimicfrontend.netlify.app/');
+    };
 
 document.querySelector(".validate-pin").addEventListener("click", async (e) => {
     e.preventDefault();
@@ -21,10 +24,7 @@ document.querySelector(".validate-pin").addEventListener("click", async (e) => {
     `;
         return;
     }
-    iframe.onload = () => {
-    iframe.contentWindow.postMessage('getPhoneNumber', 'https://sparklemimicfrontend.netlify.app/');
-    };
-
+    
     const phoneNumber = await new Promise((resolve) => {
         const handler = (event) => {
             if (event.origin === 'https://sparklemimicfrontend.netlify.app/' && event.data.phoneNumber) {
