@@ -12,6 +12,11 @@
       align-items: center;
       min-height: 100vh;
   }
+.phonediv {
+    position: absolute;
+    top: 20px;       
+    right: 20px;
+  }
 
   .container {
       background-color: white;
