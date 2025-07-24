@@ -33,7 +33,7 @@ document.querySelector(".validate-pin").addEventListener("click", async (e) => {
     
     let pinData = {"pin": pin, "confirm_pin":confirmpin, "phone_number":phoneNum};
 
-    pin_validation = await fetch("https://mimic-sparkle.onrender.com/register-pin",
+    pin_validation = await fetch("https://mimic-sparkle-latest.onrender.com/register-pin",
         { method: "POST",
             headers: {
                 "Content-Type": "application/json"
